@@ -1,0 +1,83 @@
+.main {
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-1);
+}
+
+.formLogin {
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: var(--gap-3);
+    border-radius: var(--border-radius);
+    background-color: var(--secundary-color);
+    color: var(--light-color);
+    box-shadow: var(--box-shadow);
+}
+
+.formTop {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-1);
+
+}
+
+.formBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-1);
+    width: 80%;
+}
+
+.formFooter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2);
+    width: 80%;
+    gap: var(--gap-3);
+}
+
+.formFooter i {
+    font-size: 25px;
+
+}
+
+.formLogin button {
+    height: 40px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-1);
+    color: var(--light);
+    background-color: var(--third-color);
+    font-size: var(--font-size-1);
+    transition: filter 0.3s;
+}
+
+.formLogin button:hover {
+    filter: brightness(1.2); 
+}
+
+.formLogin input {
+    height: 40px;
+    border: none;
+    padding: 5px 20px;
+    outline: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--light);
+    font-size: var(--font-size-1);
+}
