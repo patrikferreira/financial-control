@@ -12,6 +12,7 @@ namespace back_end.Model
         [Required, StringLength(8)] public string Password { get; set; }
         [Required, Column("created_at", TypeName = "DateTime")] public DateTime created_at { get; set; }
         [Required, Column("updated_at", TypeName = "DateTime")] public DateTime updated_at { get; set; }
+        public Guid? token { get; set; } = null;
         public virtual ICollection<Transaction> Transactions { get; set; }
 
     }

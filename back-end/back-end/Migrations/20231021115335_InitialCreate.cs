@@ -30,7 +30,8 @@ namespace back_end.Migrations
                     Password = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     created_at = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "DateTime", nullable: false)
+                    updated_at = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    token = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {

@@ -98,6 +98,9 @@ namespace back_end.Migrations
                         .HasColumnType("DateTime")
                         .HasColumnName("created_at");
 
+                    b.Property<Guid>("token")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("DateTime")
                         .HasColumnName("updated_at");

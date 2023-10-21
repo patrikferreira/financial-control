@@ -19,6 +19,9 @@ namespace back_end.Controllers
             User user = _context.Users.FirstOrDefault(x => x.UserName == login);
             if(password == user.Password)
             {
+                Guid tk = Guid.NewGuid();
+                user.token = tk;
+                _context.SaveChanges();
                 return Ok(user);
             }
             return BadRequest();
