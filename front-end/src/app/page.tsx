@@ -1,10 +1,13 @@
-import FormLogin from './components/form/FormLogin'
-import styles from './page.module.css'
+"use client"
+import { useRouter } from 'next/router'
+import { useEffect } from 'react';
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      
-    </main>
-  )
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/login");
+  }, [router]);
+
+  return null;
 }

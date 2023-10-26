@@ -7,7 +7,7 @@ export default function page() {
     const {user, setUser} = useContext(userCtx);
   return (
     <main>
-        {user.name}
+        aa
     </main>
   )
 }
