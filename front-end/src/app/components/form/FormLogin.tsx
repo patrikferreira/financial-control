@@ -4,7 +4,7 @@ import Input from './Input'
 import Button from './Button'
 import AuthService from '@/app/service/AuthService'
 import { userCtx } from '@/app/store/UserProvider'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 
 
 
@@ -39,10 +39,11 @@ export default function FormLogin() {
             setError("");
             ctx.setUser(x);
             localStorage.setItem("token", x.token);
+            console.log("22")
             router.push('/app');
           })
           .catch(err => {
-            setError("Usuário ou senha incorretos!")
+            setError(err.message)
           });
         }}/>
 

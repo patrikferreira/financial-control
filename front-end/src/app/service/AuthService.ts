@@ -14,7 +14,7 @@ export default class AuthService {
         form.append('password', password)
         const response = await fetch(this.baseUrl, {method: 'POST', body: form})
         const json = await response.json()
-        console.log(json)
+        
         return json;
 
     }
