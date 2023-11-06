@@ -34,20 +34,20 @@ export default function FormLogin() {
       <span className={styles.msgError}>{error}</span>
       </div>
       <div className={styles.formFooter}>
+
         <Button description='Logar' action={() => {
           AuthService.login(username, password).then(x => {
-            setError("");
             ctx.setUser(x);
             localStorage.setItem("token", x.token);
-            console.log("22")
-            router.push('/app');
+            if(x.token) {
+              router.push('/app');
+            } else {
+              setError("Usuário ou senha inválidos.")
+              router.push('/login');
+            }
           })
-          .catch(err => {
-            setError(err.message)
-          });
-        }}/>
-
-      
+        }} />
+        
       </div>
     </div>
   )
