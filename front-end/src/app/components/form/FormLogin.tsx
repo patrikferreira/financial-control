@@ -15,6 +15,17 @@ export default function FormLogin() {
   const ctx = useContext(userCtx);
   const router = useRouter();
 
+  function handleLogin() {
+    AuthService.login(username, password).then((x) => {
+      if(x.token) {
+        ctx.setUser(x);
+        localStorage.setItem("token", x.token);
+        router.push('/app');
+      } else {
+        setError("Usuário ou senha inválidos.");
+      }
+    })
+  }
 
   return (
     <div className={styles.formLogin}>
@@ -34,20 +45,7 @@ export default function FormLogin() {
       <span className={styles.msgError}>{error}</span>
       </div>
       <div className={styles.formFooter}>
-
-        <Button description='Logar' action={() => {
-          AuthService.login(username, password).then(x => {
-            ctx.setUser(x);
-            localStorage.setItem("token", x.token);
-            if(x.token) {
-              router.push('/app');
-            } else {
-              setError("Usuário ou senha inválidos.")
-              router.push('/login');
-            }
-          })
-        }} />
-        
+        <Button description='Logar' action={handleLogin} />  
       </div>
     </div>
   )

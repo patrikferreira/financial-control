@@ -27,5 +27,20 @@ namespace back_end.Controllers
             return BadRequest();
 
         }
+
+        [HttpPost("VerifyToken")]
+        public bool VerifyToken()
+        {
+            string authorizationHeader = Request.Headers["Authorization"];
+            if (string.IsNullOrWhiteSpace(authorizationHeader))
+            {
+                return false;
+            }
+
+            string token = authorizationHeader.Replace("Bearer ", "");
+
+            User user = _context.Users.FirstOrDefault(x => x.token == Guid.Parse(token));
+            return user != null;
+        }
     }
 }
