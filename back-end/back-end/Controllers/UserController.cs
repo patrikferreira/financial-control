@@ -30,12 +30,13 @@ namespace back_end.Controllers
         }
 
         [HttpGet("{Id}")]
-        public ActionResult<User> GetById(int Id)
+        public ActionResult<UserDTO> GetById(int Id)
         {
             try
             {
                 User user = this._context.Users.FirstOrDefault(x => x.Id == Id);
-                return Ok(user);
+                UserDTO userDto = new UserDTO(user, this._calcBalance(Id));
+                return Ok(userDto);
             }
             catch
             {
@@ -118,6 +119,13 @@ namespace back_end.Controllers
             {
                 return BadRequest();
             }
+        }
+        private decimal _calcBalance(int userId)
+        {
+            decimal income = this._context.Transactions.Where(x => x.TransactionType == TransactionType.InCome && x.UserId == userId).Sum(x => x.Amount);
+            decimal outcome = this._context.Transactions.Where(x => x.TransactionType == TransactionType.OutCome && x.UserId == userId).Sum(x => x.Amount);
+            decimal total = income - outcome;
+            return total;
         }
 
     }

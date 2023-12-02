@@ -28,13 +28,13 @@ namespace back_end.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
-        public ActionResult<Transaction> GetById(int Id)
+        [HttpGet("{userId}")]
+        public ActionResult<ICollection<Transaction>> GetByUserId(int userId)
         {
             try
             {
-                Transaction transaction = this._context.Transactions.FirstOrDefault(x => x.Id == Id);
-                return Ok(transaction);
+                ICollection<Transaction> transactionsList = this._context.Transactions.Where(x => x.UserId == userId).ToList();
+                return Ok(transactionsList);
             }
             catch
             {
@@ -63,7 +63,7 @@ namespace back_end.Controllers
 
                 this._context.Add(newTransaction);
                 this._context.SaveChanges();
-                return CreatedAtAction(nameof(GetById), new { Id = newTransaction.Id }, newTransaction);
+                return Ok(newTransaction);
             }
             catch
             {
@@ -90,7 +90,7 @@ namespace back_end.Controllers
 
                     this._context.SaveChanges();
 
-                    return CreatedAtAction(nameof(GetById), new { Id = transactionToEdit.Id }, transactionToEdit);
+                    return Ok(transactionToEdit);
                 }
                 else
                 {
