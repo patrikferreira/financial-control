@@ -1,7 +1,16 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import styles from '../app/page.module.css'
+import InComeOption from './InComeOption';
+import OutComeOption from './OutComeOption';
 
 export default function AddValue() {
+    const [type, setType] = useState<string>();
+
+    function getValue(value: string) {
+        setType(value)
+    }
+    
     return (
         <div className={styles.addValue}>
             <label htmlFor=""></label>
@@ -10,13 +19,14 @@ export default function AddValue() {
                 <input type="number" placeholder='Valor' />
             </div>
             <div className={styles.select}>
-                <select name="" id="">
-                    <option value="">Entrada</option>
-                    <option value="">Saída</option>
+                <select name="type" id="" onChange={({target}) => {
+                        getValue(target.value)
+                    }}>
+                    <option value="income">Entrada</option>
+                    <option value="outcome">Saída</option>
                 </select>
-                <select name="" id="">
-                    <option value=""></option>
-                </select>
+                {type === 'outcome' ? <OutComeOption /> : <InComeOption /> }
+                
             </div>
             <button>
                 Adicionar

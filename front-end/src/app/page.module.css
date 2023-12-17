@@ -56,7 +56,7 @@
     gap: var(--gap-3);
 }
 
-.formLogin > button {
+.formLogin button {
     height: 40px;
     border: none;
     padding: var(--padding-input);
@@ -76,7 +76,7 @@
     filter: brightness(1.2); 
 }
 
-.formLogin > input {
+.formLogin input {
     height: 40px;
     border: none;
     padding: var(--padding-input);

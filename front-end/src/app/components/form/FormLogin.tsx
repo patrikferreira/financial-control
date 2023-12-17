@@ -1,3 +1,4 @@
+"use client"
 import React, {useState, useContext} from 'react'
 import styles from '../../page.module.css'
 import Input from './Input'
