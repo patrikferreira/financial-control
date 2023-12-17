@@ -50,9 +50,10 @@
     display: grid;
     grid-template-columns: 60vw 1fr;
     grid-template-rows: 30vh 60vh;
+    grid-gap: var(--gap-2)
 }
 
-.addValue {
+.addValue, .balanceDiv {
     background-color: var(--secondary-color);
     box-shadow: var(--shadow);
     border-radius: var(--radius);
@@ -61,9 +62,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--gap-1)
+    gap: var(--gap-1);
+    color: var(--light-color);
 }
 
+/* addValue */
 .input {
     height: 40px;
     width: 90%;
@@ -122,5 +125,22 @@
 
 .addValue > button:hover {
     filter: brightness(1.2); 
+}
+
+/* balance */
+.balanceDiv {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-3);
+}
+.balanceHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    font-size: var(--font-2);
+}
+
+.balance {
+    color: var(--green-color);
 }
 
