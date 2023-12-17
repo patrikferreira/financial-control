@@ -1,15 +1,15 @@
-"use client"
 import React, { useContext } from 'react'
-import styles from '../page.module.css'
-import { userCtx } from '../store/UserProvider'
+import styles from '../app/page.module.css'
 import Auth from '../components/Auth';
+import AppContent from '../components/AppContent';
+import AppHeader from '../components/AppHeader';
 
 export default function page() {
-    const {user, setUser} = useContext(userCtx);
   return (
     <Auth>
-      <main>
-        teste22
+      <main className={styles.main}>
+        <AppHeader />
+        <AppContent />
       </main>
     </Auth>
   )

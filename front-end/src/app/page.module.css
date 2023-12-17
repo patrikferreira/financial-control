@@ -5,9 +5,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-1);
+    font-size: var(--font-1);
 }
 
+/* form */
 .formLogin {
     height: 500px;
     width: 400px;
@@ -15,12 +16,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: var(--padding-2);
     gap: var(--gap-3);
-    border-radius: var(--border-radius);
-    background-color: var(--secundary-color);
+    border-radius: var(--radius);
+    background-color: var(--secondary-color);
     color: var(--light-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--shadow);
 }
 
 .formTop {
@@ -28,7 +29,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-1);
-    
 }
 
 .formBody {
@@ -56,25 +56,19 @@
     gap: var(--gap-3);
 }
 
-.formFooter i {
-    font-size: 25px;
-}
-
-
-.formLogin button {
+.formLogin > button {
     height: 40px;
     border: none;
-    padding: 5px 10px;
-    border-radius: var(--border-radius);
+    padding: var(--padding-input);
+    border-radius: var(--radius);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--gap-1);
     color: var(--light);
     background-color: var(--third-color);
     font-size: var(--font-size-1);
-    transition: filter 0.3s;
+    transition: var(--transition);
     margin-top: 10px;
 }
 
@@ -82,17 +76,18 @@
     filter: brightness(1.2); 
 }
 
-.formLogin input {
+.formLogin > input {
     height: 40px;
     border: none;
-    padding: 5px 20px;
+    padding: var(--padding-input);
     outline: none;
-    border-radius: var(--border-radius);
+    border-radius: var(--radius);
     background-color: var(--primary-color);
     color: var(--light);
-    font-size: var(--font-size-1);
+    font-size: var(--font-1);
 }
 
+/* spinner */
 .loadingContainer {
     display: flex;
     justify-content: center;

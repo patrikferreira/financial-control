@@ -12,7 +12,6 @@ export default function Auth({children}: Props) {
     const [auth, setAuth] = useState<boolean>(false);
     useEffect(() => {
         const token = localStorage.getItem("token");
-        console.log(`auth: ${token}`);
         setAuth(!!token);
         if(!token) {
         return redirect("/")

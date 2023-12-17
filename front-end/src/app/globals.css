@@ -2,20 +2,24 @@
 
 :root {
   --font-family: 'Poppins', sans-serif;
-  --font-size-1: 15px;
-  --font-size-2: 25px;
   --primary-color: #212426;
-  --secundary-color: #1f2123;
+  --secondary-color: #1f2123;
   --third-color: #4b39ea;
   --dark-color: #0c0c0c;
   --light-color: #f8f7f7;
-  --box-shadow: 5px 5px 7px #1c1d1f;
-  --bg-input: #747578;
   --error-color: #ff5555;
-  --border-radius: 10px;
+  --shadow: 5px 5px 7px #1c1d1f;
+  --radius: 10px;
+  --border: 1px solid #d0d7de;
+  --font-1: 1rem;
+  --padding-1: 10px;
+  --padding-2: 20px;
+  --padding-3: 30px;
+  --padding-input: 5px 20px;
   --gap-1: 10px;
   --gap-2: 20px;
-  --gap-3: 40px; 
+  --gap-3: 30px;
+  --transition: filter 0.3s;
 }
 
 * {
