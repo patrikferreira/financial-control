@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import styles from '../app/page.module.css'
 import InComeOption from './InComeOption';
 import OutComeOption from './OutComeOption';
+import ContainerContent from './ContainerContent';
+import Input from './form/Input';
+import Button from './form/Button';
 
 export default function AddValue() {
     const [type, setType] = useState<string>();
@@ -10,27 +13,29 @@ export default function AddValue() {
     function getValue(value: string) {
         setType(value)
     }
-    
+
+    function teste() {
+        return ''
+    }
+
     return (
-        <div className={styles.addValue}>
+        <ContainerContent>
             <label htmlFor=""></label>
             <div className={styles.input}>
-                <input type="text" name="" id="" placeholder='Descrição' />
-                <input type="number" placeholder='Valor' />
+                <Input type='string' getValue={teste} placeholder='Descrição' />
+                <Input type='number' getValue={teste} placeholder='Valor' />
             </div>
             <div className={styles.select}>
-                <select name="type" id="" onChange={({target}) => {
-                        getValue(target.value)
-                    }}>
+                <select name="type" id="" onChange={({ target }) => {
+                    getValue(target.value)
+                }}>
                     <option value="income">Entrada</option>
                     <option value="outcome">Saída</option>
                 </select>
-                {type === 'outcome' ? <OutComeOption /> : <InComeOption /> }
-                
+                {type === 'outcome' ? <OutComeOption /> : <InComeOption />}
+
             </div>
-            <button>
-                Adicionar
-            </button>
-        </div>
+            <Button action={teste} description='Adicionar'/>
+        </ContainerContent>
     )
 }

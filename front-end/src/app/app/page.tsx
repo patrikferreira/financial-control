@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import styles from '../app/page.module.css'
 import Auth from '../components/Auth';
 import AppContent from '../components/AppContent';

@@ -28,19 +28,16 @@ namespace back_end.Controllers
 
         }
 
-        [HttpPost("VerifyToken")]
-        public bool VerifyToken()
+        [HttpGet]
+        public IActionResult VerifyToken()
         {
-            string authorizationHeader = Request.Headers["Authorization"];
-            if (string.IsNullOrWhiteSpace(authorizationHeader))
-            {
-                return false;
-            }
-
-            string token = authorizationHeader.Replace("Bearer ", "");
-
+            string token = Request.Headers["Authorization"];
             User user = _context.Users.FirstOrDefault(x => x.token == Guid.Parse(token));
-            return user != null;
+            if(user != null) 
+            {
+                return Ok(user);
+            }
+            return BadRequest();
         }
     }
 }

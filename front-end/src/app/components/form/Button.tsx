@@ -1,6 +1,5 @@
 "use client"
-import styles from '../../page.module.css'
-import { User, userCtx } from '@/app/store/UserProvider';
+import { userCtx } from '@/app/store/UserProvider';
 import React, { useContext } from 'react'
 
 type Props = {
@@ -9,7 +8,6 @@ type Props = {
 }
 
 export default function Button({description, action}: Props) {
-  const ctx = useContext(userCtx);
   return (
     <button onClick={(e) => {
       e.preventDefault()

@@ -42,7 +42,7 @@
 .msgError {
     color: var(--error-color);
     position: absolute;
-    bottom: -22px;
+    bottom: -27px;
     font-size: 12px;
     width: 100%;
     text-align: center;

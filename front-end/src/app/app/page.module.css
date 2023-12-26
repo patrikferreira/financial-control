@@ -1,16 +1,16 @@
 .main {
     background-color: var(--primary-color);
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 /* header */
 .headerApp {
     background-color: var(--secondary-color);
     height: 70px;
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: var(--shadow-header);
+    -moz-box-shadow: var(--shadow-header);
+    box-shadow: var(--shadow-header);
     color: var(--light-color);
     display: flex;
     justify-content: space-between;
@@ -44,19 +44,28 @@
 }
 
 /* app content */
-.appContent {
+.container {
     height: calc(100% - 70px);
-    padding: var(--padding-1);
-    display: grid;
-    grid-template-columns: 60vw 1fr;
-    grid-template-rows: 30vh 60vh;
-    grid-gap: var(--gap-2)
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.addValue, .balanceDiv {
+.appContent {
+    height: 100%;
+    max-width: 1100px;
+    padding: var(--padding-1);
+    display: grid;
+    grid-template-columns: minmax(300px, 700px) minmax(200px, 400px);
+    grid-template-rows: minmax(200px, 250px) minmax(300px, 400px);
+    grid-gap: var(--gap-2);
+}
+
+.containerContent {
     background-color: var(--secondary-color);
     box-shadow: var(--shadow);
     border-radius: var(--radius);
+    padding: var(--padding-1);
     grid-column: auto;
     display: flex;
     flex-direction: column;
@@ -106,12 +115,12 @@
 }
 
 .select > select option {
-    height: 40px; /* Define a altura desejada para as opções */
-    background-color: var(--primary-color); /* Cor de fundo */
-    color: var(--light-color); /* Cor do texto */
+    height: 40px; 
+    background-color: var(--primary-color); 
+    color: var(--light-color); 
 }
 
-.addValue > button {
+.containerContent > button {
     height: 40px;
     border: none;
     background-color: var(--third-color);
@@ -123,16 +132,11 @@
     margin-top: 10px;
 }
 
-.addValue > button:hover {
+.appButton:hover {
     filter: brightness(1.2); 
 }
 
 /* balance */
-.balanceDiv {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-3);
-}
 .balanceHeader {
     display: flex;
     justify-content: space-between;
@@ -142,5 +146,78 @@
 
 .balance {
     color: var(--green-color);
+    margin-top: 10%;
+}
+
+/* transactions */
+.transactionsDiv {
+    justify-content: flex-start;
+    align-items: baseline;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%; 
+}
+
+.transactionsDiv::-webkit-scrollbar {
+    width: 10px;
+}
+
+.transactionsDiv::-webkit-scrollbar-track {
+    background-color: var(--secondary-color);
+}
+
+.transactionsDiv::-webkit-scrollbar-thumb {
+    background-color: var(--third-color);
+    border-radius: 20px;
+}
+
+.transactionsDiv ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-1);
+}
+
+.transactionsDiv li {
+    background-color: var(--primary-color);
+    padding: var(--padding-1);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-1);
+}
+
+li .transactionItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transactionItem p {
+    font-size: 0.9rem;
+}
+
+.transactionItem .value {
+    color: var(--green-color);
+}
+
+.transactionType {
+    display: flex;
+    justify-content: space-between;
+}
+
+.type p {
+    display: flex;
+    gap: var(--gap-1);
+    align-items: center;
+}
+
+.spanType {
+    height: 10px;
+    width: 10px;
+    background-color: var(--green-color);
+}
+
+.type p {
+    font-size: 0.7rem;
 }
 

@@ -5,28 +5,16 @@ import Input from './Input'
 import Button from './Button'
 import AuthService from '@/app/service/AuthService'
 import { userCtx } from '@/app/store/UserProvider'
-import { redirect, useRouter } from 'next/navigation'
-
+import { useRouter } from 'next/navigation'
 
 
 export default function FormLogin() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const ctx = useContext(userCtx);
+  const {setUser} = useContext(userCtx);
   const router = useRouter();
 
-  function handleLogin() {
-    AuthService.login(username, password).then((x) => {
-      if(x.token) {
-        ctx.setUser(x);
-        localStorage.setItem("token", x.token);
-        router.push('/app');
-      } else {
-        setError("Usuário ou senha inválidos.");
-      }
-    })
-  }
 
   return (
     <div className={styles.formLogin}>
@@ -46,7 +34,17 @@ export default function FormLogin() {
       <span className={styles.msgError}>{error}</span>
       </div>
       <div className={styles.formFooter}>
-        <Button description='Logar' action={handleLogin} />  
+        <Button description='Logar' action={() => {
+          AuthService.login(username, password).then((x) => {
+            if(x.token) {
+              setUser(x);
+              localStorage.setItem("token", x.token);
+              router.push('/app');
+            } else {
+              setError("Usuário ou senha inválidos.");
+            }
+          })
+        }} />  
       </div>
     </div>
   )
