@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from '../app/page.module.css'
-import { DataType } from './DataType';
-import Button from './form/Button';
 
 type Props = {
     description: string,
@@ -11,18 +9,19 @@ type Props = {
 }
 
 export default function Transaction({ description, type, typeOf, value }: Props) {
-    const transactionType = type === 1 ? 'income' : 'outcome';
-    const color = DataType[transactionType][typeOf].color;
-
     function teste() {
 
     }
+
+    const colors = {
+        1: '#5af57e',
+        2: '#ff5555'
+      }
+    
     return (
         <li>
             <div className={styles.transactionType}>
-
-                <div className={styles.type} style={{ background: color }}>
-    
+                <div className={styles.type} style={{background: type === 2 ? colors[2] : colors[1]}}>
                 </div>
                 <p>{description}</p>
             </div>
@@ -30,7 +29,8 @@ export default function Transaction({ description, type, typeOf, value }: Props)
             <div className={styles.transactionValue}>
                 <p>{`R$ ${value}`}</p>
                 <div className={styles.action}>
-                    {type === 2 ? <button className={styles.check}><i className="fa-solid fa-check"></i></button> : ''}
+                    {type === 2 ? <button ><i className="fa-solid fa-check"></i></button> : ''}
+                    <button ><i className="fa-regular fa-pen-to-square"></i></button>
                     <button ><i className="fa-solid fa-trash"></i></button>
                 </div>
             </div>
