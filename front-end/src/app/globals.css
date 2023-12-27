@@ -23,7 +23,7 @@
   --gap-1: 10px;
   --gap-2: 20px;
   --gap-3: 30px;
-  --transition: filter 0.3s;
+  --transition: 0.3s;
 }
 
 * {

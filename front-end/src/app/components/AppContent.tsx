@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../app/page.module.css'
 import Transactions from './Transactions'
 import Graphic from './Graphic'
