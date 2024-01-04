@@ -7,11 +7,21 @@ export type UserCtx = {
 }
 
 export type User = {
+    id: number,
     name: string,
     userName: string,
     password: string,
     email: string,
     balance: number,
+    transactions?: Transactions[]
+}
+
+export type Transactions = {
+    description: string,
+    amount: number,
+    transactionType: number,
+    incomeType: number,
+    outcomeType: number,
 }
 
 type Props = {
@@ -22,6 +32,8 @@ export const userCtx = createContext<UserCtx>({} as UserCtx);
 
 export default function UserProvider({children} : Props) {
     const [user, setUser] = useState<User>({} as User);
+
+
     return (
         <userCtx.Provider value={{user, setUser}}>{children}</userCtx.Provider>
     )

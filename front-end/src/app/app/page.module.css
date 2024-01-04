@@ -83,7 +83,7 @@
     gap: var(--gap-1)
 }
 
-.input>input {
+.input > input {
     height: 100%;
     width: max-content;
     outline: none;
@@ -160,7 +160,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-1);
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .inputOutputHeader {
@@ -207,60 +207,41 @@
     justify-content: space-between;
     gap: var(--gap-1);
     overflow: hidden;
+    padding: var(--padding-1);
 }
 
 .transactionsDiv li p {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .transactionType {
     display: flex;
     align-items: center;
     gap: var(--gap-1);
-    padding: var(--padding-1);
 }
 
-.type {
-    height: 10px;
-    width: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    transition: var(--transition);
-    font-size: 0.9rem;
-}
 
 .transactionValue {
     display: flex;
     align-items: center;
-    height: 100%;
+    gap: var(--gap-1);
 }
 
-.transactionValue p {
-    padding: var(--padding-1) 0;
-}
 
 .action {
     display: flex;
+    gap: var(--gap-1);
     transition: var(--transition);
-    height: 100%;
-    background-color: transparent;
 }
 
 .action button {
-    height: 100%;
+    /* width: 30px; */
     overflow: hidden;
     cursor: pointer;
     border: none;
     color: var(--light-color);
     background-color: transparent;
     transition: var(--transition);
-    width: 0;
-}
-
-.transactionsDiv li:hover .action button {
-    width: 30px;
 }
 
 .action button:active i {
