@@ -4,28 +4,61 @@ import { initialize } from 'next/dist/server/lib/render-server'
 
 type Props = {
     description: string,
-    value: string,
+    value: number,
     type: number,
-    typeOf: number,
+    typeOf?: number,
 }
 
-export default function Transaction({ description, type, typeOf, value }: Props) {
+export default function Transaction({ description, type, value, typeOf }: Props) {
     function teste() {
 
     }
 
-    const colors = {
-        1: '#5af57e',
-        2: '#ff5555'
-      }
-    
+    const typeOfIncomeDescription = {
+        1: 'Salário',
+        2: 'Outros'
+    }
+
+    const typeOfOutcomeDescription = {
+        1: 'Contas fixas',
+        2: 'Cartão de crédito',
+        3: 'Estudos',
+        4: 'Alimentação',
+        5: 'Lazer',
+        6: 'Investimentos',
+        7: 'Outros'
+    }
+
     return (
         <li>
             <div className={styles.transactionType}>
                 <div className={styles.type}>
-                    {type === 2 ? <i className="fa-solid fa-arrow-up" style={{color: colors[2]}}></i> : <i className="fa-solid fa-arrow-down" style={{color: colors[1]}}></i> }
+                    {type === 2 ? <i className="fa-solid fa-arrow-up"></i> : <i className="fa-solid fa-arrow-down"></i>}
                 </div>
-                <p>{description}</p>
+                <div className={styles.descriptionDiv}>
+                    <p>{description}</p>
+                    <div className={styles.typeOf}>
+                        <p>Teste</p>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.transactionValue}>
+                <p>{`R$ ${value}`}</p>
+                <div className={styles.action}>
+                    <button ><i className="fa-regular fa-pen-to-square"></i></button>
+                    <button ><i className="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            {/* <div className={styles.transactionType}>
+                <div className={styles.type}>
+                    {type === 2 ? <i className="fa-solid fa-arrow-up" style={{ color: colors[2] }}></i> : <i className="fa-solid fa-arrow-down" style={{ color: colors[1] }}></i>}
+                </div>
+                <div className={styles.descriptionDiv}>
+                    <p>{description}</p>
+                    <div className={styles.typeOfDiv}>
+                        <div className={styles.typeOf}></div>
+                    </div>
+                </div>
             </div>
 
             <div className={styles.transactionValue}>
@@ -34,8 +67,7 @@ export default function Transaction({ description, type, typeOf, value }: Props)
                     <button ><i className="fa-regular fa-pen-to-square"></i></button>
                     <button ><i className="fa-solid fa-trash"></i></button>
                 </div>
-            </div>
-
+            </div> */}
         </li>
     )
 }

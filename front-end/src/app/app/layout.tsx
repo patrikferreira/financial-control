@@ -1,5 +1,6 @@
 import React from 'react'
 import Auth from '../components/Auth'
+import Header from '../components/Header'
 
 
 export default function layout({
@@ -10,7 +11,10 @@ export default function layout({
 
   return (
     <>
-        <Auth>{children}</Auth>
+        <Auth>
+          <Header />
+          {children}
+          </Auth>
     </>
   )
 }

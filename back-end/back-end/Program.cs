@@ -1,4 +1,5 @@
 using back_end.Context;
+using back_end.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Services.AddSwaggerGen();
 string conString = builder.Configuration.GetConnectionString("conection_db");
 ServerVersion version = ServerVersion.AutoDetect(conString);
 builder.Services.AddDbContext<FinancialControlContext>(opt => opt.UseMySql(conString, version));
-
+builder.Services.AddScoped<AuthService, AuthService>();
 var app = builder.Build();
 app.UseCors(e => e.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

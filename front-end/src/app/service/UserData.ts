@@ -1,5 +1,6 @@
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+// requisição de front para back https
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 export default class UserData {
     public static async balance(id: number) {
@@ -9,8 +10,16 @@ export default class UserData {
     }
 
     public static async transactions(id: number) {
-        const response = await fetch(`https://localhost:7229/transaction/${id}`);
-        const json = await response.json();
-        return json;
+        try {
+            const response = await fetch(`http://localhost:3000/api/transaction/${id}`);
+            const json = await response.json();
+            console.log(json)
+            return json;
+        }
+        catch (error: any) {
+            console.error(error.message)
+        }
     }
 }
+
+

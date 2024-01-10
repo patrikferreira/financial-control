@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export type UserCtx = {
     user: User,
-    setUser: (user: User) => void,
+    setUser: (user: User | ((u: User) => User)) => void,
 }
 
 export type User = {
@@ -13,7 +13,7 @@ export type User = {
     password: string,
     email: string,
     balance: number,
-    transactions?: Transactions[]
+    transactions: Transactions[]
 }
 
 export type Transactions = {

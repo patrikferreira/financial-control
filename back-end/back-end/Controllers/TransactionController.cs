@@ -1,6 +1,7 @@
 ﻿using back_end.Context;
 using back_end.DTO;
 using back_end.Model;
+using back_end.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace back_end.Controllers
@@ -10,22 +11,11 @@ namespace back_end.Controllers
     public class TransactionController : ControllerBase
     {
         private FinancialControlContext _context;
-        public TransactionController(FinancialControlContext ctx)
+        private AuthService _authService;
+        public TransactionController(FinancialControlContext ctx, AuthService auth)
         {
             this._context = ctx;
-        }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<Transaction>> GetAll()
-        {
-            try
-            {
-                return Ok(this._context.Transactions);
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            this._authService = auth;
         }
 
         [HttpGet("{userId}")]
@@ -33,8 +23,17 @@ namespace back_end.Controllers
         {
             try
             {
-                ICollection<Transaction> transactionsList = this._context.Transactions.Where(x => x.UserId == userId).ToList();
-                return Ok(transactionsList);
+                string secretKey = Request.Headers["Secret"];
+         
+
+                if(_authService.checkSecret(secretKey))
+                {
+                    ICollection<Transaction> transactionsList = this._context.Transactions.Where(x => x.UserId == userId).ToList();
+                    return Ok(transactionsList);
+                }
+
+                return Unauthorized();
+
             }
             catch
             {
