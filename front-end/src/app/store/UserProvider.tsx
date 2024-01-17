@@ -13,6 +13,8 @@ export type User = {
     password: string,
     email: string,
     balance: number,
+    income: number,
+    outcome: number,
     transactions: Transactions[]
 }
 

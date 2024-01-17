@@ -11,7 +11,7 @@ using back_end.Context;
 namespace back_end.Migrations
 {
     [DbContext(typeof(FinancialControlContext))]
-    [Migration("20231021115335_InitialCreate")]
+    [Migration("20240116133133_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -101,7 +101,7 @@ namespace back_end.Migrations
                         .HasColumnType("DateTime")
                         .HasColumnName("created_at");
 
-                    b.Property<Guid>("token")
+                    b.Property<Guid?>("token")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("updated_at")

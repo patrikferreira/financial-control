@@ -168,6 +168,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: var(--radius);
+    background-color: var(--main-bg);
 }
 
 .transactions .transactionType {
@@ -191,7 +192,8 @@
 }
 
 .transactions .type {
-    background-color: var(--main-bg);
+    background-color: var(--secondary-color);
+    color: var(--light-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -208,13 +210,13 @@
 
 .action>button {
     height: 45px;
-    width: 30px;
+    width: 45px;
     cursor: pointer;
     border: none;
-    background-color: var(--light-color);
+    background-color: transparent;
 }
 
-.action button:active {
+.action button:active i {
     webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8);
@@ -241,15 +243,14 @@
 }
 
 .cashFlow>i {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    color: var(--secondary-color);
+    height: 45px;
+    width: 45px;
+    border-radius: var(--radius);
+    color: var(--light-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.7rem;
-    background-color: var(--main-bg);
+    background-color: var(--secondary-color);
 }
 
 .cashInfo .cashType {

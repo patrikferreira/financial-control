@@ -48,26 +48,9 @@ export default function Transaction({ description, type, value, typeOf }: Props)
                     <button ><i className="fa-regular fa-pen-to-square"></i></button>
                     <button ><i className="fa-solid fa-trash"></i></button>
                 </div>
-            </div>
-            {/* <div className={styles.transactionType}>
-                <div className={styles.type}>
-                    {type === 2 ? <i className="fa-solid fa-arrow-up" style={{ color: colors[2] }}></i> : <i className="fa-solid fa-arrow-down" style={{ color: colors[1] }}></i>}
-                </div>
-                <div className={styles.descriptionDiv}>
-                    <p>{description}</p>
-                    <div className={styles.typeOfDiv}>
-                        <div className={styles.typeOf}></div>
-                    </div>
-                </div>
-            </div>
+                <img src={`/path/to/image.png?v=${new Date().getTime()}`} alt="Imagem" />
 
-            <div className={styles.transactionValue}>
-                <p>{`R$ ${value}`}</p>
-                <div className={styles.action}>
-                    <button ><i className="fa-regular fa-pen-to-square"></i></button>
-                    <button ><i className="fa-solid fa-trash"></i></button>
-                </div>
-            </div> */}
+            </div>
         </li>
     )
 }

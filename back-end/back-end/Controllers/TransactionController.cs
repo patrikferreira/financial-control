@@ -42,28 +42,38 @@ namespace back_end.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Transaction> Add([FromForm] TransactionDTO transaction)
+        public ActionResult<Transaction> Add([FromBody] TransactionDTO transaction)
         {
             try
             {
-                Transaction newTransaction = new Transaction()
-                {
-                    UserId = transaction.UserId,
-                    Description = transaction.Description,
-                    Amount = transaction.Amount,
-                    Notes = transaction.Notes,
-                    IsPaid = transaction.IsPaid,
-                    TransactionType = transaction.TransactionType,
-                    InComeCategoryId = transaction.InComeCategoryId,
-                    OutComeCategoryId = transaction.OutComeCategoryId,
-                    created_at = DateTime.Now,
-                    updated_at = DateTime.Now,
-                };
 
-                this._context.Add(newTransaction);
-                this._context.SaveChanges();
-                return Ok(newTransaction);
+                string secretKey = Request.Headers["Secret"];
+
+                if (_authService.checkSecret(secretKey))
+                {
+                        Transaction newTransaction = new Transaction()
+                    {
+                        UserId = transaction.UserId,
+                        Description = transaction.Description,
+                        Amount = transaction.Amount,
+                        Notes = transaction.Notes,
+                        IsPaid = transaction.IsPaid,
+                        TransactionType = transaction.TransactionType,
+                        InComeCategoryId = transaction.InComeCategoryId,
+                        OutComeCategoryId = transaction.OutComeCategoryId,
+                        created_at = DateTime.Now,
+                        updated_at = DateTime.Now,
+                    };
+
+                    this._context.Add(newTransaction);
+                    this._context.SaveChanges();
+                    return Ok(newTransaction);
+                }
+
+                return Unauthorized();
+
             }
+
             catch
             {
                 return BadRequest();
@@ -76,25 +86,35 @@ namespace back_end.Controllers
         {
             try
             {
-                if (Id != null)
-                {
-                    Transaction transactionToEdit = _context.Transactions.FirstOrDefault(x => x.Id == Id);
-                    transactionToEdit.updated_at = DateTime.Now;
-                    transactionToEdit.Description = transaction.Description;
-                    transactionToEdit.Amount = transaction.Amount;
-                    transactionToEdit.OutComeCategoryId = transaction.OutComeCategoryId;
-                    transactionToEdit.InComeCategoryId = transaction.InComeCategoryId;
-                    transactionToEdit.IsPaid = transaction.IsPaid;
-                    transactionToEdit.TransactionType = transaction.TransactionType;
 
-                    this._context.SaveChanges();
+                string secretKey = Request.Headers["Secret"];
 
-                    return Ok(transactionToEdit);
-                }
-                else
+                if (_authService.checkSecret(secretKey))
                 {
-                    return BadRequest();
+
+                        if (Id != null)
+                    {
+                        Transaction transactionToEdit = _context.Transactions.FirstOrDefault(x => x.Id == Id);
+                        transactionToEdit.updated_at = DateTime.Now;
+                        transactionToEdit.Description = transaction.Description;
+                        transactionToEdit.Amount = transaction.Amount;
+                        transactionToEdit.Notes = transaction.Notes;
+                        transactionToEdit.OutComeCategoryId = transaction.OutComeCategoryId;
+                        transactionToEdit.InComeCategoryId = transaction.InComeCategoryId;
+                        transactionToEdit.IsPaid = transaction.IsPaid;
+                        transactionToEdit.TransactionType = transaction.TransactionType;
+
+                        this._context.SaveChanges();
+
+                        return Ok(transactionToEdit);
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
                 }
+
+                return Unauthorized();
             }
             catch
             {
@@ -107,14 +127,21 @@ namespace back_end.Controllers
         {
             try
             {
-                if (Id != null)
+
+                string secretKey = Request.Headers["Secret"];
+
+                if (_authService.checkSecret(secretKey))
                 {
-                    Transaction transactionToDelete = this._context.Transactions.FirstOrDefault(x => x.Id == Id);
-                    this._context.Transactions.Remove(transactionToDelete);
-                    this._context.SaveChanges();
-                    return Ok();
+                    if (Id != null)
+                    {
+                        Transaction transactionToDelete = this._context.Transactions.FirstOrDefault(x => x.Id == Id);
+                        this._context.Transactions.Remove(transactionToDelete);
+                        this._context.SaveChanges();
+                        return Ok();
+                    }
+                    return StatusCode(500);
                 }
-                return StatusCode(500);
+                return Unauthorized();
             }
             catch (Exception e)
             {

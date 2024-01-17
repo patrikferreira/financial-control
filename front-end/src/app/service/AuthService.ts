@@ -1,4 +1,3 @@
-import { POST } from "../api/auth/route"
 import { User } from "../store/UserProvider"
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"

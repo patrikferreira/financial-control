@@ -35,7 +35,7 @@ namespace back_end.Controllers
             try
             {
                 User user = this._context.Users.FirstOrDefault(x => x.Id == Id);
-                UserDTO userDto = new UserDTO(user, this._calcBalance(Id));
+                UserDTO userDto = new UserDTO(user, this._calcIncome(Id), this._calcOutcome(Id),this._calcBalance(Id));
                 return Ok(userDto);
             }
             catch
@@ -119,6 +119,18 @@ namespace back_end.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        private decimal _calcIncome(int userId)
+        {
+            decimal income = this._context.Transactions.Where(x => x.TransactionType == TransactionType.InCome && x.UserId == userId).Sum(x => x.Amount);
+            return income;
+        }
+
+        private decimal _calcOutcome(int userId)
+        {
+            decimal outcome = this._context.Transactions.Where(x => x.TransactionType == TransactionType.OutCome && x.UserId == userId).Sum(x => x.Amount);
+            return outcome;
         }
         private decimal _calcBalance(int userId)
         {

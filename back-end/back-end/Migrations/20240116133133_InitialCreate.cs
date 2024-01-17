@@ -31,7 +31,7 @@ namespace back_end.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     created_at = table.Column<DateTime>(type: "DateTime", nullable: false),
                     updated_at = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    token = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    token = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
