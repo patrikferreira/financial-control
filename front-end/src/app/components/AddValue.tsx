@@ -7,6 +7,7 @@ import Input from './formLogin/Input';
 import Button from './formLogin/Button';
 import UserData from '../service/UserData';
 import { userCtx } from '../store/UserProvider';
+import Tooltip from './Tooltop';
 
 export default function AddValue() {
     const { user, setUser } = useContext(userCtx);
@@ -15,36 +16,17 @@ export default function AddValue() {
     const [notes, setNotes] = useState<string>('');
     const [type, setType] = useState<number>(1);
     const [inComeCategory, setInComeCategory] = useState<number>(1);
-    const [outComeCategory, setOutComeCategory] = useState<number>(1);
+    const [outComeCategory, setOutComeCategory] = useState<number>(0);
+    const [showTooltip, setShowTooltip] = useState(false);
 
 
     async function addTransaction() {
-        const secretKey = process.env.SECRET as string;
+        await UserData.addTransaction(user.id, description, amount, notes, false, type, inComeCategory, outComeCategory);
+        setShowTooltip(true);
 
-        const newTransaction = {
-            UserId: user.id,
-            Description: description,
-            Amount: amount,
-            Notes: notes,
-            IsPaid: false,
-            TransactionType: type,
-            InComeCategoryId: inComeCategory,
-            OutComeCategoryId: outComeCategory,
-        }
-
-        const response = await fetch(`https://localhost:7229/transaction/${user.id}`, {
-            method: 'POST',
-            headers: {
-                Secret: secretKey,
-            },
-            body: JSON.stringify(newTransaction)
-        });
-
-        const json = await response.json()
-
-        console.log(json)
-
-        return json
+        setTimeout(() => {
+            setShowTooltip(false);
+        }, 3000);
     }
 
     function getOutCome(selectedValue: number) {
@@ -63,7 +45,7 @@ export default function AddValue() {
                 <Input type='string' getValue={(value) => setDescription(value)} placeholder='Descrição' />
                 <Input type='number' getValue={(value) => setAmount(parseInt(value))} placeholder='Valor' />
             </div>
-            <textarea name="" id="" cols={30} rows={2} placeholder='Notas' onChange={(e) => setNotes(e.target.value)}></textarea>
+            <textarea name="" id="" cols={30} rows={2} maxLength={180} placeholder='Notas' onChange={(e) => setNotes(e.target.value)}></textarea>
             <div className={styles.selectContainer}>
                 <div className={styles.select}>
                     <select name="type" id="" onChange={(event) => setType(parseInt(event.target.value, 10))}>
@@ -77,6 +59,7 @@ export default function AddValue() {
 
             </div>
             <Button action={addTransaction} description='Adicionar' />
+            {showTooltip && <Tooltip text="Transação adicionada com sucesso!" />}
         </div>
     )
 }

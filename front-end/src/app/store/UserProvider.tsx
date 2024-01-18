@@ -19,11 +19,13 @@ export type User = {
 }
 
 export type Transactions = {
+    id: number,
     description: string,
+    notes: string,
     amount: number,
     transactionType: number,
-    incomeType: number,
-    outcomeType: number,
+    inComeCategoryId: number,
+    outComeCategoryId: number,
 }
 
 type Props = {

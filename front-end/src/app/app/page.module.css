@@ -55,7 +55,7 @@
 .addValue,
 .balance,
 .transactions,
-.graphic {
+.generateReport {
     background-color: var(--light-color);
     border-radius: var(--radius);
     padding: var(--padding-2);
@@ -152,9 +152,39 @@
     outline: none;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: var(--third-color);
+    color: #fff;
+    padding: 8px;
+    border-radius: var(--radius);
+    bottom: 10px;
+    left: calc(50% - 130px);
+    width: 260px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+
 .transactions {
     grid-row: 2/4;
     grid-column: 2/3;
+    overflow-y: auto;
+}
+
+.transactions::-webkit-scrollbar {
+    width: 18px;   
+}
+
+.transactions::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: var(--radius);
+}
+
+.transactions::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: var(--radius); 
+    border: 5px solid var(--light-color);
 }
 
 .transactions ul {
@@ -206,23 +236,24 @@
     display: flex;
     gap: var(--gap-1);
     align-items: center;
+    position: relative;
 }
 
 .action>button {
     height: 45px;
-    width: 45px;
+    width: 35px;
     cursor: pointer;
     border: none;
     background-color: transparent;
 }
 
 .action button:active i {
-    webkit-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8);
 }
 
-.graphic {
+.generateReport {
     grid-row: 3/4;
 }
 
@@ -260,3 +291,16 @@
 .balance {
     grid-row: 1/2;
 }
+
+.notesModal {
+    position: absolute;
+    height: 200px;
+    width: 180px;
+    border-radius: var(--radius);
+    bottom: -200px;
+    background-color: var(--yellow-color);
+    padding: var(--padding-1);
+    font-size: 0.8rem;
+    z-index: 2000;
+}
+

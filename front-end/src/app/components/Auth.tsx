@@ -13,10 +13,11 @@ type Props = {
 export default function Auth({children}: Props) {
     const {setUser} = useContext(userCtx);
     const [auth, setAuth] = useState<boolean>(false);
+    const router = useRouter()
     useEffect(() => {
         AuthService.verifyToken().then(user => {
             if(user === null) {
-               return redirect("/")
+               return redirect("/login")
             }
             setUser(user)
             return setAuth(true)

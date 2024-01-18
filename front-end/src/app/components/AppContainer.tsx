@@ -1,10 +1,10 @@
 "use client"
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styles from '../app/page.module.css'
 import Transactions from './Transactions'
 import AddValue from './AddValue'
 import Balance from './Balance'
-import Graphic from './Graphic'
+import Graphic from './GenerateReport'
 import { User, userCtx } from '../store/UserProvider'
 import UserData from '../service/UserData'
 
@@ -17,19 +17,19 @@ export default function AppContainer() {
       const userBalance = await UserData.getUserData(user.id);
 
       setUser((prev: User) => {
-        return {...prev, income: userBalance.income, outcome: userBalance.outcome, balance: userBalance.balance}
-      })
+        return { ...prev, balance: userBalance.balance, income: userBalance.income, outcome: userBalance.outcome };
+      });
 
       const userTransactions = await UserData.getTransactionsData(user.id);
 
       setUser((prev: User) => {
-        return {...prev, transactions: userTransactions} as User
-      }) 
+        return { ...prev, transactions: userTransactions } as User;
+      });
     }
 
     fetchData()
 
-  }, [])
+  }, [user])
 
   return (
     <div className={styles.container}>

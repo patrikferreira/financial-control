@@ -12,7 +12,7 @@ export default function Transactions() {
                 <h4>Histórico de transações</h4>
                 <ul>
                     {user.transactions ? user.transactions.map(transaction => {
-                        return <Transaction description={transaction.description} type={transaction.transactionType} value={transaction.amount}/>
+                        return <Transaction id={transaction.id} description={transaction.description} type={transaction.transactionType} value={transaction.amount} notes={transaction.notes} typeOf={transaction.transactionType === 1 ? transaction.inComeCategoryId : transaction.outComeCategoryId}/>
                     }) : <div>Sem transação</div>}
                 </ul>
             </div>

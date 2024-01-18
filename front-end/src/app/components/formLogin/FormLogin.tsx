@@ -15,21 +15,35 @@ export default function FormLogin() {
   const {setUser} = useContext(userCtx);
   const router = useRouter();
 
+  function handleEnterKey(event: any) {
+    if (event.key === 'Enter') {
+      AuthService.login(username, password).then((x) => {
+        if (x.token) {
+          setUser(x);
+          localStorage.setItem("token", x.token);
+          router.push('/app');
+        } else {
+          setError("Usuário ou senha inválidos.");
+        }
+      });
+    }
+  };
+
   return (
-    <div className={styles.formLogin}>
+    <div className={`${styles.formLogin} ${styles.centralized}`}>
       <div className={styles.formTop}>
         <h1>Controle Financeiro</h1>
         <p>Bem-vindo!</p>
       </div>
       <div className={styles.formBody}>
-        <label htmlFor="">Login</label>
+        <label htmlFor="username">Login</label>
         <Input type='text' getValue={(value) => {
           setUsername(value)
-        }}/>
-        <label htmlFor="">Senha</label>
+        }} id='username' onKeyDown={handleEnterKey}/>
+        <label htmlFor="password">Senha</label>
         <Input type='password' getValue={(value) => {
           setPassword(value)
-        }}/>
+        }} id='password' onKeyDown={handleEnterKey}/>
       <span className={styles.msgError}>{error}</span>
       </div>
       <div className={styles.formFooter}>

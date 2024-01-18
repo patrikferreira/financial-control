@@ -8,8 +8,8 @@ export default function Logout() {
     const router = useRouter();
 
     function logout() {
-        localStorage.removeItem("token");
         router.push("/login");
+        localStorage.removeItem("token");
     }
 
     return (

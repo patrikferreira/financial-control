@@ -1,17 +1,28 @@
-import React from 'react'
+"use client"
+import React, { useContext, useState, useEffect } from 'react'
 import styles from '../app/page.module.css'
-import { initialize } from 'next/dist/server/lib/render-server'
+import UserData from '../service/UserData'
+import Notes from './Notes'
 
 type Props = {
+    id: number,
     description: string,
+    notes: string,
     value: number,
     type: number,
     typeOf?: number,
 }
 
-export default function Transaction({ description, type, value, typeOf }: Props) {
-    function teste() {
+export default function Transaction({ id, description, notes, type, value, typeOf }: Props) {
 
+    const [notesModal, setNotesModal] = useState<boolean>(false);
+
+    function deleteTransaction() {
+        UserData.deleteTransaction(id)
+    }
+
+    function showNotesModal() {
+        setNotesModal(!notesModal)
     }
 
     const typeOfIncomeDescription = {
@@ -29,6 +40,7 @@ export default function Transaction({ description, type, value, typeOf }: Props)
         7: 'Outros'
     }
 
+
     return (
         <li>
             <div className={styles.transactionType}>
@@ -38,18 +50,18 @@ export default function Transaction({ description, type, value, typeOf }: Props)
                 <div className={styles.descriptionDiv}>
                     <p>{description}</p>
                     <div className={styles.typeOf}>
-                        <p>Teste</p>
+                        <p>{type === 1 ? typeOfIncomeDescription[typeOf] : typeOfOutcomeDescription[typeOf]}</p>
                     </div>
                 </div>
             </div>
             <div className={styles.transactionValue}>
                 <p>{`R$ ${value}`}</p>
                 <div className={styles.action}>
+                    <button onClick={showNotesModal}><i className="fa-regular fa-file-lines"></i></button>
                     <button ><i className="fa-regular fa-pen-to-square"></i></button>
-                    <button ><i className="fa-solid fa-trash"></i></button>
+                    <button onClick={deleteTransaction}><i className="fa-solid fa-trash"></i></button>
                 </div>
-                <img src={`/path/to/image.png?v=${new Date().getTime()}`} alt="Imagem" />
-
+            {notesModal && <Notes notes={notes} />}
             </div>
         </li>
     )
