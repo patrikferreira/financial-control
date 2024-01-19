@@ -4,7 +4,7 @@ type Props = {
     type: string,
     placeholder?: string,
     getValue: (value: string) => void,
-    id: string,
+    id?: string,
     onKeyDown?: (event: any) => void,
 }
 

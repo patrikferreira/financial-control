@@ -1,24 +1,25 @@
-.main {
-    background-color: var(--main-bg);
-    height: calc(100vh - 70px);
-    padding: var(--padding-2) var(--padding-layout);
+/* ---------- generic classe */
+.centralized {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* header */
+/* ---------- header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
-    padding: var(--padding-1) var(--padding-layout);
-    background-color: var(--secondary-color);
+    padding: 0 var(--padding-layout);
+    background-color: var(--primary-color);
     color: var(--light-color);
 }
 
-.userContainer {
+.userContainer, .logout {
     display: flex;
     align-items: center;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
 }
 
 .userContainer .imgUser {
@@ -26,9 +27,6 @@
     width: 40px;
     background-color: var(--third-color);
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: var(--light-color);
 }
 
@@ -37,49 +35,54 @@
 }
 
 .logout {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-1);
     cursor: pointer;
 }
 
-/* app */
+/* ---------- app container */
+.main {
+    background-color: var(--light-color);
+    height: calc(100vh - 70px);
+    padding: var(--padding-md) var(--padding-layout);
+}
+
 .container {
     height: 100%;
     display: grid;
-    grid-template-columns: minmax(400px, 500px) minmax(400px, 1fr);
-    grid-template-rows: min-content min-content 1fr;
-    grid-gap: var(--gap-2);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr min-content min-content;
+    grid-gap: var(--gap-md);
+    background-color: var(--light-color);
 }
 
 .addValue,
-.balance,
 .transactions,
-.generateReport {
+.balance {
     background-color: var(--light-color);
-    border-radius: var(--radius);
-    padding: var(--padding-2);
+    border-radius: var(--radius-lg);
+    padding: var(--padding-md);
     display: flex;
     flex-direction: column;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
 }
 
+/* ---------- addValue component */
 .addValue {
-    grid-row: 1/3;
+    grid-row: 1/2;
 }
 
 .addValue .input {
     height: 40px;
     display: flex;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
 }
 
 .addValue .input>input {
-    border: var(--border);
-    border-radius: var(--radius);
+    border: none;
+    border-radius: var(--radius-lg);
     outline: none;
-    padding: var(--padding-1);
+    padding: var(--padding-sm);
     width: 50%;
+    background-color: var(--silver-color);
 }
 
 .addValue .input>input[type="number"] {
@@ -93,10 +96,44 @@
     margin: 0;
 }
 
+.flexRow {
+    display: flex;
+    gap: var(--gap-sm);
+}
+
+.addValue textarea {
+    width: 50%;
+    height: 90px;
+    outline: none;
+    padding: var(--padding-sm);
+    border: none;
+    border-radius: var(--radius-lg);
+    resize: none;
+    background-color: var(--silver-color);
+}
+
+.select {
+    width: 100%;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--padding-sm);
+    background-color: var(--silver-color);
+}
+
+.select select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--silver-color);
+}
+
 .addValue>button {
     height: 40px;
     border: none;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background-color: var(--third-color);
     cursor: pointer;
     color: var(--light-color);
@@ -107,57 +144,21 @@
     filter: brightness(1.2);
 }
 
-.addValue textarea {
-    width: 100%;
-    outline: none;
-    padding: var(--padding-1);
-    border: var(--border);
-    border-radius: var(--radius);
-    resize: none;
-}
-
 .selectContainer {
+    width: 50%;
     height: 40px;
     display: flex;
-    gap: var(--gap-1);
+    flex-direction: column;
+    gap: var(--gap-sm);
 }
 
-.select {
-    width: 50%;
-    height: 100%;
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: var(--border);
-    padding: var(--padding-1);
-}
-
-.select>p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: capitalize;
-    font-size: 0.8rem;
-}
-
-.select i {
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.select select {
-    width: 100%;
-    border: none;
-    outline: none;
-}
-
+/* ---------- tooltip */
 .tooltip {
     position: absolute;
     background-color: var(--third-color);
     color: #fff;
     padding: 8px;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     bottom: 10px;
     left: calc(50% - 130px);
     width: 260px;
@@ -165,45 +166,45 @@
     font-size: 0.8rem;
 }
 
-
+/* ---------- transactions component */
 .transactions {
-    grid-row: 2/4;
+    grid-row: 1/4;
     grid-column: 2/3;
-    overflow-y: auto;
-}
-
-.transactions::-webkit-scrollbar {
-    width: 18px;   
-}
-
-.transactions::-webkit-scrollbar-track {
-    background: var(--light-color);
-    border-radius: var(--radius);
-}
-
-.transactions::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color);
-    border-radius: var(--radius); 
-    border: 5px solid var(--light-color);
 }
 
 .transactions ul {
+    height: 100%;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
+}
+
+.transactions ul::-webkit-scrollbar {
+    width: 18px;   
+}
+
+.transactions ul::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: var(--radius-lg);
+}
+
+.transactions ul::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: var(--radius-lg); 
+    border: 5px solid var(--light-color);
 }
 
 .transactions ul>li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: var(--radius);
-    background-color: var(--main-bg);
+    border-bottom: var(--border);
 }
 
 .transactions .transactionType {
     display: flex;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
 }
 
 .transactions .descriptionDiv>p {
@@ -213,30 +214,85 @@
 
 .transactions .typeOfDiv {
     display: flex;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
 }
 
 
 .transactions .typeOf>p {
-    font-size: 0.8rem;
+    font-size: var(--font-sm);
 }
 
 .transactions .type {
-    background-color: var(--secondary-color);
-    color: var(--light-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 45px;
     width: 45px;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
 }
 
 .transactionValue {
     display: flex;
-    gap: var(--gap-1);
+    gap: var(--gap-sm);
     align-items: center;
     position: relative;
+}
+
+.action {
+    display: flex;
+    height: 100%;
+}
+
+.notesContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.283);
+}
+
+.notesModal {
+    height: 300px;
+    width: 300px;
+    background-color: var(--light-color);
+    padding: var(--padding-sm);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.notesModalheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-md);
+    font-weight: bold;
+}
+
+.notesModalheader button {
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    font-size: var(--font-md);
+}
+
+.notesModalheader button:active i {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+.notesModalContent {
+    height: 100%;
+    width: 100%;
 }
 
 .action>button {
@@ -253,54 +309,60 @@
     transform: scale(0.8);
 }
 
-.generateReport {
-    grid-row: 3/4;
-}
-
-.cashContainer {
-    display: flex;
+/* ---------- balance */
+.balance {
+    flex-direction: column;
     justify-content: space-between;
 }
 
-.cashHeader {
+
+.cashContainer {
     display: flex;
+    gap: var(--gap-sm);
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
+
 
 .cashFlow {
     display: flex;
     align-items: center;
-    gap: var(--gap-1);
-    border-radius: var(--radius);
+    gap: var(--gap-sm);
 }
 
 .cashFlow>i {
     height: 45px;
     width: 45px;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     color: var(--light-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-color);
+    background-color: var(--yellow-color);
+}
+
+.cashFlow:last-child i {
+    background-color: var(--third-color);
 }
 
 .cashInfo .cashType {
-    font-size: 0.8rem;
+    font-size: var(--font-sm)
 }
 
-.balance {
-    grid-row: 1/2;
+.report {
+    display: flex;
+    gap: var(--gap-sm);
 }
 
-.notesModal {
-    position: absolute;
-    height: 200px;
-    width: 180px;
-    border-radius: var(--radius);
-    bottom: -200px;
-    background-color: var(--yellow-color);
-    padding: var(--padding-1);
-    font-size: 0.8rem;
-    z-index: 2000;
+.report button {
+    background-color: var(--third-color);
+    border: none;
+    width: 50%;
+    height: 40px;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    color: var(--light-color);
 }
+
+
 

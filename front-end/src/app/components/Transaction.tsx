@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styles from '../app/page.module.css'
 import UserData from '../service/UserData'
 import Notes from './Notes'
@@ -10,11 +10,10 @@ type Props = {
     notes: string,
     value: number,
     type: number,
-    typeOf?: number,
+    typeOf?: number
 }
 
 export default function Transaction({ id, description, notes, type, value, typeOf }: Props) {
-
     const [notesModal, setNotesModal] = useState<boolean>(false);
 
     function deleteTransaction() {
@@ -22,6 +21,10 @@ export default function Transaction({ id, description, notes, type, value, typeO
     }
 
     function showNotesModal() {
+        setNotesModal(!notesModal)
+    }
+
+    function closeModal() {
         setNotesModal(!notesModal)
     }
 
@@ -39,7 +42,6 @@ export default function Transaction({ id, description, notes, type, value, typeO
         6: 'Investimentos',
         7: 'Outros'
     }
-
 
     return (
         <li>
@@ -61,8 +63,8 @@ export default function Transaction({ id, description, notes, type, value, typeO
                     <button ><i className="fa-regular fa-pen-to-square"></i></button>
                     <button onClick={deleteTransaction}><i className="fa-solid fa-trash"></i></button>
                 </div>
-            {notesModal && <Notes notes={notes} />}
             </div>
+            {notesModal && <Notes description={description} notes={notes} close={closeModal}/>}
         </li>
     )
 }

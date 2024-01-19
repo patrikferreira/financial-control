@@ -7,7 +7,7 @@ export default class UserData {
         try {
             const response = await fetch(`https://localhost:7229/user/${id}`);
             const json = await response.json();
-
+            console.log(json)
             return json;
         }
         catch (error: any) {

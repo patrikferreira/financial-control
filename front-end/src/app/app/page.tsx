@@ -5,10 +5,8 @@ import Auth from '../components/Auth';
 export default function page() {
 
   return (
-    <Auth>
-      <main className={styles.main}>
-        <AppContainer />
-      </main>
-    </Auth>
+    <main className={styles.main}>
+      <AppContainer />
+    </main>
   )
 }

@@ -38,11 +38,13 @@ export default function FormLogin() {
       <div className={styles.formBody}>
         <label htmlFor="username">Login</label>
         <Input type='text' getValue={(value) => {
-          setUsername(value)
+          setUsername(value);
+          setError('');
         }} id='username' onKeyDown={handleEnterKey}/>
         <label htmlFor="password">Senha</label>
         <Input type='password' getValue={(value) => {
-          setPassword(value)
+          setPassword(value);
+          setError('');   
         }} id='password' onKeyDown={handleEnterKey}/>
       <span className={styles.msgError}>{error}</span>
       </div>

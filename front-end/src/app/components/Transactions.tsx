@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from '../app/page.module.css'
 import { userCtx } from '../store/UserProvider'
 import Transaction from './Transaction'
+import Balance from './Balance'
 
 export default function Transactions() {
-    const { user } = useContext(userCtx);
+    const { user, setUser } = useContext(userCtx);
 
     return (
             <div className={styles.transactions}>
