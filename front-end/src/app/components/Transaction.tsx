@@ -1,8 +1,9 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../app/page.module.css'
 import UserData from '../service/UserData'
 import Notes from './Notes'
+import { TypeObject, inComeObject, outComeObject } from './TypeObject'
 
 type Props = {
     id: number,
@@ -10,7 +11,7 @@ type Props = {
     notes: string,
     value: number,
     type: number,
-    typeOf?: number
+    typeOf: string
 }
 
 export default function Transaction({ id, description, notes, type, value, typeOf }: Props) {
@@ -28,20 +29,6 @@ export default function Transaction({ id, description, notes, type, value, typeO
         setNotesModal(!notesModal)
     }
 
-    const typeOfIncomeDescription = {
-        1: 'Salário',
-        2: 'Outros'
-    }
-
-    const typeOfOutcomeDescription = {
-        1: 'Contas fixas',
-        2: 'Cartão de crédito',
-        3: 'Estudos',
-        4: 'Alimentação',
-        5: 'Lazer',
-        6: 'Investimentos',
-        7: 'Outros'
-    }
 
     return (
         <li>
@@ -52,7 +39,10 @@ export default function Transaction({ id, description, notes, type, value, typeO
                 <div className={styles.descriptionDiv}>
                     <p>{description}</p>
                     <div className={styles.typeOf}>
-                        <p>{type === 1 ? typeOfIncomeDescription[typeOf] : typeOfOutcomeDescription[typeOf]}</p>
+                        <p>
+                            {typeOf}
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -64,7 +54,7 @@ export default function Transaction({ id, description, notes, type, value, typeO
                     <button onClick={deleteTransaction}><i className="fa-solid fa-trash"></i></button>
                 </div>
             </div>
-            {notesModal && <Notes description={description} notes={notes} close={closeModal}/>}
+            {notesModal && <Notes description={description} notes={notes} close={closeModal} />}
         </li>
     )
 }

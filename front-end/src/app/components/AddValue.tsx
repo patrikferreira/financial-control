@@ -68,7 +68,6 @@ export default function AddValue() {
             </div>
             <Button action={addTransaction} description='Adicionar' />
             {showTooltip && <Tooltip text="Transação adicionada com sucesso!" />}
-            <Report />
         </div>
     )
 }

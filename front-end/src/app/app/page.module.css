@@ -12,8 +12,8 @@
     align-items: center;
     height: 70px;
     padding: 0 var(--padding-layout);
-    background-color: var(--primary-color);
-    color: var(--light-color);
+    background-color: var(--light-color);
+    border-bottom: var(--border);
 }
 
 .userContainer, .logout {
@@ -40,7 +40,7 @@
 
 /* ---------- app container */
 .main {
-    background-color: var(--light-color);
+    background-color: var(--primary-color);
     height: calc(100vh - 70px);
     padding: var(--padding-md) var(--padding-layout);
 }
@@ -49,20 +49,21 @@
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr min-content min-content;
+    grid-template-rows: min-content 1fr min-content;
     grid-gap: var(--gap-md);
-    background-color: var(--light-color);
 }
 
 .addValue,
 .transactions,
-.balance {
+.balance,
+.graphic {
     background-color: var(--light-color);
     border-radius: var(--radius-lg);
     padding: var(--padding-md);
     display: flex;
     flex-direction: column;
     gap: var(--gap-sm);
+    border: var(--border);
 }
 
 /* ---------- addValue component */
@@ -82,7 +83,7 @@
     outline: none;
     padding: var(--padding-sm);
     width: 50%;
-    background-color: var(--silver-color);
+    background-color: var(--secondary-color);
 }
 
 .addValue .input>input[type="number"] {
@@ -109,7 +110,7 @@
     border: none;
     border-radius: var(--radius-lg);
     resize: none;
-    background-color: var(--silver-color);
+    background-color: var(--secondary-color);
 }
 
 .select {
@@ -120,14 +121,14 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--padding-sm);
-    background-color: var(--silver-color);
+    background-color: var(--secondary-color);
 }
 
 .select select {
     width: 100%;
     border: none;
     outline: none;
-    background-color: var(--silver-color);
+    background-color: var(--secondary-color);
 }
 
 .addValue>button {

@@ -7,6 +7,7 @@ import { User, userCtx } from '../store/UserProvider';
 import UserData from '../service/UserData';
 import Balance from './Balance';
 import Report from './Report';
+import Graphic from './Graphic';
 
 export default function AppContainer() {
   const { user, setUser } = useContext(userCtx);
@@ -36,6 +37,7 @@ export default function AppContainer() {
     <div className={styles.container}>
       <AddValue />
       <Transactions />
+      <Graphic />
       <Balance />
     </div>
   );
